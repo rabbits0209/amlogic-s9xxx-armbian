@@ -90,6 +90,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Replace custom DTB
+        run: |
+          echo "===== 开始替换 DTB 文件 ====="
+          # 将仓库中的自定义 DTB 文件复制到内核源码目录
+          cp compile-kernel/tools/patch/rk3399-zk-r39a.dtb \
+             ${{ github.workspace }}/compile-kernel/kernel/arch/arm64/boot/dts/rockchip/
+          echo "===== DTB 文件已替换为 rk3399-zk-r39a.dtb ====="
+
       - name: Initialization environment
         id: init
         env:
